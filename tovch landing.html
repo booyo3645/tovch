@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Замаа Товчил — ТОВЧ Coaching</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-deep: #1C3A2B;
+    --green-mid: #2D5A40;
+    --green-light: #3D7A58;
+    --green-pale: #A8D5B5;
+    --gold: #F5C842;
+    --gold-light: #FFF3C4;
+    --cream: #FAFAF7;
+    --red-soft: #FF6B6B;
+    --text: #1A1A1A;
+    --text-muted: #777;
+    --border: #E8E8E4;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--green-deep);
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 24px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg-circle {
+    position: absolute;
+    border-radius: 50%;
+    background: var(--green-light);
+    opacity: 0.12;
+    animation: pulse 6s ease-in-out infinite;
+  }
+  .hero-bg-circle:nth-child(1) { width: 500px; height: 500px; top: -150px; right: -150px; }
+  .hero-bg-circle:nth-child(2) { width: 300px; height: 300px; bottom: -80px; left: -80px; animation-delay: 3s; }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.12; }
+    50% { transform: scale(1.08); opacity: 0.18; }
+  }
+
+  .logo-badge {
+    width: 64px; height: 64px;
+    background: var(--gold);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px;
+    margin: 0 auto 24px;
+    position: relative; z-index: 1;
+    animation: fadeDown 0.6s ease both;
+    box-shadow: 0 8px 32px rgba(245,200,66,0.35);
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(42px, 10vw, 72px);
+    font-weight: 900;
+    color: var(--cream);
+    letter-spacing: 3px;
+    line-height: 1;
+    position: relative; z-index: 1;
+    animation: fadeDown 0.6s 0.1s ease both;
+  }
+
+  .hero-tagline {
+    margin-top: 14px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--green-pale);
+    position: relative; z-index: 1;
+    animation: fadeDown 0.6s 0.2s ease both;
+  }
+
+  .hero-tagline span { margin: 0 8px; opacity: 0.5; }
+
+  .hero-pain {
+    margin-top: 32px;
+    max-width: 420px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 14px 14px 0;
+    padding: 16px 20px;
+    font-size: 15px;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.7;
+    text-align: left;
+    position: relative; z-index: 1;
+    animation: fadeDown 0.6s 0.3s ease both;
+  }
+
+  .hero-cta {
+    margin-top: 36px;
+    position: relative; z-index: 1;
+    animation: fadeDown 0.6s 0.4s ease both;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--green-deep);
+    font-weight: 700;
+    font-size: 15px;
+    padding: 16px 36px;
+    border-radius: 50px;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    box-shadow: 0 8px 24px rgba(245,200,66,0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(245,200,66,0.5); }
+
+  .urgency-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,107,107,0.15);
+    border: 1px solid rgba(255,107,107,0.3);
+    border-radius: 50px;
+    padding: 8px 16px;
+    font-size: 13px;
+    color: #FF9999;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    color: var(--green-pale);
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    z-index: 1;
+    animation: bounce 2s infinite;
+  }
+
+  .scroll-hint::after {
+    content: '';
+    width: 1px;
+    height: 32px;
+    background: var(--green-pale);
+    opacity: 0.4;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(6px); }
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 64px 24px; max-width: 560px; margin: 0 auto; }
+
+  .section-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--green-mid);
+    margin-bottom: 8px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(26px, 6vw, 36px);
+    font-weight: 700;
+    color: var(--green-deep);
+    line-height: 1.2;
+    margin-bottom: 28px;
+  }
+
+  /* ── SERVICES ── */
+  .services-section { background: var(--cream); }
+
+  .service-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--border);
+    opacity: 0;
+    transform: translateX(-16px);
+    transition: opacity 0.5s, transform 0.5s;
+  }
+  .service-item.visible { opacity: 1; transform: translateX(0); }
+
+  .service-item:last-child { border-bottom: none; }
+
+  .service-name { font-size: 15px; color: #333; line-height: 1.4; }
+  .service-sub { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+  .service-price { font-size: 18px; font-weight: 700; color: var(--green-mid); white-space: nowrap; margin-left: 16px; }
+
+  /* ── VIP ── */
+  .vip-section-wrap {
+    background: var(--green-deep);
+    padding: 0;
+  }
+
+  .vip-inner {
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 64px 24px;
+  }
+
+  .vip-inner .section-label { color: var(--gold); }
+  .vip-inner .section-title { color: var(--cream); }
+
+  .vip-desc {
+    font-size: 15px;
+    color: var(--green-pale);
+    line-height: 1.7;
+    margin-bottom: 24px;
+  }
+
+  .price-compare-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+  }
+
+  .price-old {
+    font-size: 15px;
+    color: #555;
+    text-decoration: line-through;
+  }
+
+  .price-arrow { color: var(--green-pale); font-size: 18px; }
+
+  .price-new {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--gold);
+  }
+
+  .packages {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+
+  .pkg {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px;
+    padding: 20px 12px;
+    text-align: center;
+    position: relative;
+    transition: transform 0.2s;
+  }
+  .pkg:hover { transform: translateY(-3px); }
+
+  .pkg.featured {
+    background: rgba(245,200,66,0.12);
+    border-color: var(--gold);
+  }
+
+  .pkg-badge {
+    position: absolute;
+    top: -11px; left: 50%;
+    transform: translateX(-50%);
+    background: var(--gold);
+    color: var(--green-deep);
+    font-size: 9px;
+    font-weight: 800;
+    padding: 3px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+    letter-spacing: 0.5px;
+  }
+
+  .pkg-months { font-size: 12px; color: var(--green-pale); margin-bottom: 6px; }
+  .pkg-price { font-size: 20px; font-weight: 800; color: white; }
+  .pkg-tag { font-size: 10px; color: #666; margin-top: 4px; }
+  .pkg.featured .pkg-tag { color: var(--gold); opacity: 0.7; }
+
+  /* ── DISCOUNTS ── */
+  .discount-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .discount-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 18px 20px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.5s, transform 0.5s;
+  }
+  .discount-card.visible { opacity: 1; transform: translateY(0); }
+
+  .discount-pct {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--green-mid);
+    line-height: 1;
+    min-width: 60px;
+  }
+
+  .discount-info h4 { font-size: 14px; font-weight: 600; margin-bottom: 3px; }
+  .discount-info p { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+
+  /* ── SOCIAL PROOF ── */
+  .proof-section { background: var(--cream); }
+
+  .proof-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 22px 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  }
+
+  .proof-icon {
+    width: 44px; height: 44px;
+    background: var(--green-mid);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+
+  .proof-text { font-size: 14px; color: #444; line-height: 1.7; }
+  .proof-text a { color: var(--green-mid); font-weight: 700; text-decoration: none; }
+  .proof-text a:hover { text-decoration: underline; }
+
+  /* ── URGENCY ── */
+  .urgency-section-wrap {
+    background: #FFF5F5;
+    padding: 0;
+    border-top: 1px solid #FFE0E0;
+    border-bottom: 1px solid #FFE0E0;
+  }
+
+  .urgency-inner {
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 40px 24px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .urgency-icon { font-size: 28px; flex-shrink: 0; }
+
+  .urgency-text h3 { font-size: 17px; font-weight: 700; color: #C0392B; margin-bottom: 6px; }
+  .urgency-text p { font-size: 14px; color: #555; line-height: 1.6; }
+  .urgency-text strong { color: #C0392B; }
+
+  /* ── PAYMENT ── */
+  .payment-box {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  }
+
+  .payment-box h3 {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+  }
+
+  .payment-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+  }
+  .payment-row:last-child { border-bottom: none; }
+  .payment-row .label { color: var(--text-muted); }
+  .payment-row .val { font-weight: 600; color: var(--text); text-align: right; }
+
+  /* ── FINAL CTA ── */
+  .final-cta {
+    background: var(--green-deep);
+    padding: 0;
+  }
+
+  .final-cta-inner {
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 72px 24px;
+    text-align: center;
+  }
+
+  .final-cta h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 7vw, 44px);
+    color: var(--cream);
+    font-weight: 900;
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+
+  .final-cta p {
+    font-size: 15px;
+    color: var(--green-pale);
+    margin-bottom: 36px;
+    line-height: 1.7;
+  }
+
+  .btn-gold {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--green-deep);
+    font-weight: 800;
+    font-size: 16px;
+    padding: 18px 44px;
+    border-radius: 50px;
+    text-decoration: none;
+    box-shadow: 0 10px 30px rgba(245,200,66,0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
+    letter-spacing: 0.3px;
+  }
+  .btn-gold:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(245,200,66,0.5); }
+
+  .insta-link {
+    display: block;
+    margin-top: 20px;
+    font-size: 13px;
+    color: var(--green-pale);
+    text-decoration: none;
+    opacity: 0.7;
+  }
+  .insta-link:hover { opacity: 1; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #111;
+    text-align: center;
+    padding: 24px;
+    font-size: 12px;
+    color: #444;
+    letter-spacing: 1px;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── STICKY CTA (mobile) ── */
+  .sticky-cta {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: var(--green-deep);
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    z-index: 100;
+    transform: translateY(100%);
+    transition: transform 0.4s ease;
+  }
+  .sticky-cta.visible { transform: translateY(0); }
+  .sticky-cta-text { font-size: 13px; color: var(--green-pale); line-height: 1.3; }
+  .sticky-cta-text strong { display: block; color: white; font-size: 15px; }
+  .btn-sticky {
+    background: var(--gold);
+    color: var(--green-deep);
+    font-weight: 700;
+    font-size: 14px;
+    padding: 12px 22px;
+    border-radius: 50px;
+    text-decoration: none;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+</style>
+</head>
+<body>
+
+<!-- STICKY CTA -->
+<div class="sticky-cta" id="stickyCta">
+  <div class="sticky-cta-text">
+    <strong>VIP — 259,000₮-аас</strong>
+    6-р сарын 1-нээс үнэ өснө
+  </div>
+  <a href="#payment" class="btn-sticky">Одоо эхлэх</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-circle"></div>
+  <div class="hero-bg-circle"></div>
+
+  <div class="logo-badge">🧠</div>
+
+  <h1>ЗАМАА ТОВЧИЛ</h1>
+  <div class="hero-tagline">
+    Жингээ хас <span>·</span> Булчингаа нэм <span>·</span> Эрүүл амьдар
+  </div>
+
+  <div class="hero-pain">
+    Та ганцаараа биеэ даагаад буруу замаар хэдэн жил ч үр дүн муутай явж магадгүй. Харин энэ удаа багшаараа чиглүүлүүлээд төөрөгдөлгүй явцгаах уу хоёулаа?
+  </div>
+
+  <div class="hero-cta">
+    <a href="#vip" class="btn-primary">VIP программ үзэх ↓</a>
+    <div class="urgency-pill">
+      ⏰ 6-р сарын 1-нээс үнэ +12% өснө
+    </div>
+  </div>
+
+  <div class="scroll-hint">Доош</div>
+</section>
+
+<!-- SERVICES -->
+<section class="services-section">
+  <div class="section-label">Үйлчилгээнүүд</div>
+  <div class="section-title">Юу багтдаг вэ?</div>
+
+  <div class="service-item">
+    <div>
+      <div class="service-name">Хичээлтэй группд нэгдэх</div>
+      <div class="service-sub">1 сар</div>
+    </div>
+    <div class="service-price">99,000₮</div>
+  </div>
+  <div class="service-item">
+    <div>
+      <div class="service-name">Зорилгод тохирсон хоолны төлөвлөгөө</div>
+    </div>
+    <div class="service-price">89,000₮</div>
+  </div>
+  <div class="service-item">
+    <div>
+      <div class="service-name">Дасгалын төлөвлөгөө гаргуулах</div>
+    </div>
+    <div class="service-price">99,000₮</div>
+  </div>
+  <div class="service-item">
+    <div>
+      <div class="service-name">Онлайн багшаас 30 минут зөвлөгөө авах</div>
+    </div>
+    <div class="service-price">100,000₮</div>
+  </div>
+</section>
+
+<!-- VIP -->
+<div class="vip-section-wrap" id="vip">
+  <div class="vip-inner">
+    <div class="section-label">Хамгийн алдартай</div>
+    <div class="section-title">VIP Ганцаарчилсан Онлайн Дасгалжуулалт</div>
+
+    <p class="vip-desc">
+      Дээрх 4 үйлчилгээ бүгд багтах бөгөөд таны сонгосон хугацааны турш тантай байнгын холбоотой байж чиглүүлнэ.
+    </p>
+
+    <div class="price-compare-row">
+      <span class="price-old">Дангаар: 387,000₮</span>
+      <span class="price-arrow">→</span>
+      <span class="price-new">VIP-д 259,000₮-аас</span>
+    </div>
+
+    <div class="packages">
+      <div class="pkg">
+        <div class="pkg-months">1 сар</div>
+        <div class="pkg-price">259,000₮</div>
+        <div class="pkg-tag">beginner</div>
+      </div>
+      <div class="pkg">
+        <div class="pkg-months">2 сар</div>
+        <div class="pkg-price">299,000₮</div>
+        <div class="pkg-tag">standard</div>
+      </div>
+      <div class="pkg featured">
+        <div class="pkg-badge">✦ most chosen</div>
+        <div class="pkg-months">3 сар</div>
+        <div class="pkg-price">379,000₮</div>
+        <div class="pkg-tag">most chosen</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DISCOUNTS -->
+<section>
+  <div class="section-label">Хөнгөлөлт</div>
+  <div class="section-title">Та хөнгөлөлт авах уу?</div>
+
+  <div class="discount-cards">
+    <div class="discount-card">
+      <div class="discount-pct">−10%</div>
+      <div class="discount-info">
+        <h4>💝 Тусгай хөнгөлөлт</h4>
+        <p>Оюутан, −18 насны хүүхдүүд, гэртээ хүүхдээ хардаг ээжүүдэд</p>
+      </div>
+    </div>
+    <div class="discount-card">
+      <div class="discount-pct">−5%</div>
+      <div class="discount-info">
+        <h4>📸 Before & After зураг</h4>
+        <p>Дасгалжуулалтын дараа та өөрийнхөө үр дүн харьцуулсан зургийг ашиглахыг зөвшөөрвөл нэмэлт хөнгөлөлт авна</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF -->
+<section class="proof-section">
+  <div class="section-label">Үр дүн</div>
+  <div class="section-title">Бодит хүмүүс, бодит өөрчлөлт</div>
+  <div class="proof-card">
+    <div class="proof-icon">📊</div>
+    <div class="proof-text">
+      VIP дасгалжуулалтаар өөрчлөгдсөн хүмүүсийн үр дүнг
+      <a href="https://instagram.com/tovch_results" target="_blank">@tovch_results</a>
+      гэсэн инстаграм хаягаар зочлон үзээрэй.
+    </div>
+  </div>
+</section>
+
+<!-- URGENCY -->
+<div class="urgency-section-wrap">
+  <div class="urgency-inner">
+    <div class="urgency-icon">⏰</div>
+    <div class="urgency-text">
+      <h3>Үнэ өсөхөөс өмнө эхэл</h3>
+      <p>Дасгалжуулалтын төлбөр 6 сарын 1-нээс <strong>+12% өснө</strong> — танд яг одоо эхлэхийг санал болгож байна.</p>
+    </div>
+  </div>
+</div>
+
+<!-- PAYMENT -->
+<section id="payment">
+  <div class="section-label">Төлбөр</div>
+  <div class="section-title">Хэрхэн төлөх вэ?</div>
+
+  <div class="payment-box">
+    <h3>📌 Дансны мэдээлэл</h3>
+    <div class="payment-row">
+      <span class="label">Банк</span>
+      <span class="val">Голомт банк</span>
+    </div>
+    <div class="payment-row">
+      <span class="label">Дансны дугаар</span>
+      <span class="val">1105678318</span>
+    </div>
+    <div class="payment-row">
+      <span class="label">IBAN</span>
+      <span class="val">MN72001500</span>
+    </div>
+    <div class="payment-row">
+      <span class="label">Дансны нэр</span>
+      <span class="val">Болдбаатар (Түмэнжаргал)</span>
+    </div>
+    <div class="payment-row">
+      <span class="label">Гүйлгээний утга</span>
+      <span class="val">Овог, нэр</span>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<div class="final-cta">
+  <div class="final-cta-inner">
+    <h2>Өнөөдрөөс эхэлье</h2>
+    <p>Төлбөр шилжүүлсэн баримтаа манай чат руу илгээгээрэй.<br>Бид тантай шуурхай холбогдох болно.</p>
+    <a href="https://instagram.com/tovch_results" target="_blank" class="btn-gold">
+      Чат руу баримт илгээх ↗
+    </a>
+    <a href="https://instagram.com/tovch_results" target="_blank" class="insta-link">
+      @tovch_results — үр дүнг үзэх
+    </a>
+  </div>
+</div>
+
+<footer>
+  © 2025 ТОВЧ Coaching &nbsp;·&nbsp; @tovch_results
+</footer>
+
+<script>
+  // Sticky CTA on scroll
+  const stickyCta = document.getElementById('stickyCta');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > window.innerHeight * 0.6) {
+      stickyCta.classList.add('visible');
+    } else {
+      stickyCta.classList.remove('visible');
+    }
+  });
+
+  // Scroll reveal
+  const observerOptions = { threshold: 0.15 };
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.service-item, .discount-card').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
